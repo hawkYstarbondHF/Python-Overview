@@ -21,7 +21,7 @@
    all formatting must match the specification exactly.
    
    author = Jacob Schrum, Last modified 6/11/2023
-   author = Eleanor Wagner, 09/12/2024
+   author = ADD YOUR NAME, ADD DATE
    
    DO NOT IMPORT ANY MODULES! USE ONLY STANDARD PYTHON FEATURES
 """
@@ -67,18 +67,8 @@ def exercise1():
        Return:           
        Computed sum
     """
-    # Loop in increment via range(): 
-    # https://www.geeksforgeeks.org/specifying-the-increment-in-for-loops-in-python/
-    
-    sum = 0 # sum to be computed
-
-    # 208 is the next divisible by 13 number starting at 200, + 1 to ensure
-    # 1287 is included, increment by 13
-    for i in range(208, 1287 + 1, 13): 
-        sum += i
-    print("The sum is:", sum) # print sum
-
-    return sum 
+    # TODO: Write according to the specification above.
+    return -1 # TODO: Change
 
 #################################################################
 
@@ -101,46 +91,14 @@ def exercise2():
        must work for any valid input, not just for these
        examples.
     """
-    print(first_longer_shorter("Hello","Bye"))
-    print(first_longer_shorter("Bye","Hello"))
-    print(first_longer_shorter("1","abc"))
-    print(first_longer_shorter("abc","1"))
-    print(first_longer_shorter("abc","123"))
-    print(first_longer_shorter("123","abc"))   
-
-
-def first_longer_shorter(first, second):
-    """Raising ValueError: 
-       https://stackoverflow.com/questions/2052390/manually-raising-throwing-an-exception-in-python
-       
-       Takes two strings and returns the first character of each based on 
-	   string length. The longer string first, followed by the shorter string
-	   If the strings are the same length, the first String parameter is first. 
-       
-       Raises a ValueError if either parameter isn't a string, is None, or
-       is less than 1 character.
-       
-       Parameters:
-       first -- first string to check
-       second -- second string to check
-       Return:
-       string of 2 characters
-    """
-    # ensuring parameter strings have at least 1 character
-    if first is None or second is None or len(first) == 0 or len(second) == 0:
-        raise ValueError();
-    
-    string = "" # string to be returned
-    
-    # determine which string is longer to be added first
-    if len(first) >= len(second): # first is longer/the same
-        string += first[0]
-        string += second[0]
-    else: # second is longer, add second to str first
-        string += second[0]
-        string += first[0]
-
-    return string
+    # TODO: Uncomment to test your completed function.
+    #       Turn in your code with these lines uncommented. 
+    #print(first_longer_shorter("Hello","Bye"))
+    #print(first_longer_shorter("Bye","Hello"))
+    #print(first_longer_shorter("1","abc"))
+    #print(first_longer_shorter("abc","1"))
+    #print(first_longer_shorter("abc","123"))
+    #print(first_longer_shorter("123","abc"))                
 
 #################################################################
 
@@ -164,37 +122,13 @@ def exercise3():
        1, 2, 3, 4, 6, 7, 8, 9, 10, 5
 
     """
-    # Printing:
-    # https://stackoverflow.com/questions/33905032/how-to-print-on-the-same-line-in-python#:~:text=use%20the%20end%20argument%20in%20the%20print%20function
+    # TODO: Define the array one_to_ten here
 
-    one_to_ten = [1,2,3,4,5,6,7,8,9,10] # array to be used
+    # TODO: Uncomment this line to test your function.
+    #       Turn in your code with this line uncommented.
+    #move_to_end(one_to_ten, 4)
 
-    move_to_end(one_to_ten, 4) # call to helper method
-
-    for i in one_to_ten: # prints properly formatted array
-        # last element shouldn't have commas
-        if i == one_to_ten[-1]: 
-            print(i) # no comma + carriage
-        else:
-            print(i, end = ", ")
-
-
-def move_to_end(list, x):
-    """This method takes a list and rearranges it so that the element
-       at the given index is moved to the end and the others are shifted to 
-       the left.
-       
-       Parameters:
-       list -- integer list to be rearranged
-       x -- the index of the elemnt to be moved
-    """
-    temp = list[x] # the list element to be moved
-
-    # starts at the element to be moved's index
-    for i in range(x,len(list)-1):
-        list[i] = list[i+1] # overwrite indicies to the left
-
-    list[-1] = temp # add temp to end
+    # TODO: Print the array contents here
 
 #################################################################
 
@@ -224,12 +158,14 @@ def exercise4():
        them. Note that these functions should raise ValueErrors
        for inappropriate inputs.
     """
-    print(recursive_seq(5))
-    print(dynamic_seq(5))
-    print(recursive_seq(8))
-    print(dynamic_seq(8))
-    print(recursive_seq(15))
-    print(dynamic_seq(15))
+    # TODO: Uncomment to test your completed functions.
+    #       Turn in your code with these lines uncommented. 
+    #print(recursive_seq(5))
+    #print(dynamic_seq(5))
+    #print(recursive_seq(8))
+    #print(dynamic_seq(8))
+    #print(recursive_seq(15))
+    #print(dynamic_seq(15))
 
 def recursive_seq(n):
     """Recursively compute the sequence described in the comment for
@@ -240,15 +176,7 @@ def recursive_seq(n):
        Return: 
        n-th value in the sequence
     """
-    # ensure appropriate input
-    if n < 0: 
-        raise ValueError()
-
-    # base cases of indices 0, 1, and 2
-    if n <= 2: 
-        return n+1
-    else: # recursive call and addition
-        return recursive_seq(n-3) + recursive_seq(n-1) # returns n-th value
+    return -1 # TODO: Change this
 
 def dynamic_seq(n):
     """Compute the sequence described in the comment for
@@ -260,25 +188,7 @@ def dynamic_seq(n):
        Return: 
        n-th value in the sequence
     """
-    # ensure appropriate input
-    if n < 0:
-        raise ValueError()
-    
-    # auxiliary list
-    list = [] 
-   
-    if n < 3: # 3 base cases
-        return n+1
-    else:
-        # fill in auxiliary list
-        for i in range(n+1):
-            if i < 3:  # first are the 3 base cases
-                list.append(i+1)
-            else:
-                # assign sum of previous element with the 2 before it
-                list.append(list[i-3] + list[i-1])
-    
-    return list[n] # returns n-th value
+    return -1 # TODO: Change this
 
 
 #################################################################
@@ -308,37 +218,7 @@ def exercise5():
        The file "numbers.txt" does not exist. Exiting.
        
     """
-    # Error Catching:
-    # https://pythonbasics.org/try-except/
-    # File Handling:
-    # https://www.geeksforgeeks.org/how-to-read-from-a-file-in-python/#
-    try:
-        # open file to read
-        file = open("numbers.txt", "r")
-
-        #start max & sum off with the first value from the file
-        max = int(file.readline()) # convert String to int
-        sum = float(max) # convert to double
-        line_num = 1 # track to calculate average
-
-        # loop through file
-        for line in file:
-            temp = int(line) # newest integer
-            if temp > max: # check against max
-                max = temp
-            
-            sum += temp # add to sum
-            line_num += 1 # increment
-        
-        file.close() # close file
-
-        # print results according to format
-        print("Maximum value:", max)
-        print("Average value:", sum/line_num)
-
-    except FileNotFoundError: # exception & message specified above
-        print("The file \"numbers.txt\" does not exist. Exiting.") 
-
+    # TODO: Write according to the specification above.
 
 #################################################################
 
@@ -364,74 +244,36 @@ def exercise6():
          the rate by the hours).
     """
     class Employee:
-        """Class for keeping track of employees, their respective salaray,
-           number of hours worked, and whether they have been paid for each hour.
-        """
-        
-        """Constructor to initialize employee, define their salary, and 
-           sets their number of hours worked to 0.
+        """TODO: Descriptive comment."""
+        # TODO: Define the class as described above.
 
-           Parameters:
-           x -- this employee's salary ($ per hour)
-        """
-        def __init__(self, x):
-            self.salary = x
-            self.unpaid_hours = 0
+    # TODO: Uncomment to test your completed class.
+    #       Turn in your code with these lines uncommented. 
+    #e1 = Employee(8.25)
+    #e1.work(8)
+    #e1.work(8)
+    #e1.work(8)
+    #e1.work(8)
+    #e1.work(8)
+    #hours1 = e1.get_unpaid_hours()
+    #paycheck1 = e1.pay()
+    #print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck1,hours1))
+    #e1.work(10)
+    #e1.work(8)
+    #e1.work(8)
+    #hours2 = e1.get_unpaid_hours()
+    #paycheck2 = e1.pay()
+    #print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck2,hours2))
 
-        """This method updates the number of unpaid hours by the amount passed
-           in.
-
-           Parameters:
-           hours -- number of hours worked
-        """
-        def work(self, hours):
-            self.unpaid_hours += hours
-        
-        """ Returns the number of unpaid hours.
-
-            Return:
-            number of hours
-        """
-        def get_unpaid_hours(self):
-            return self.unpaid_hours
-        
-        """This method pays all of the currently unpaid hours according to
-		   the employee's salary. Then it resets the number of unpaid hours 
-		   to 0.
-
-           Return:
-           integer of the employee's paycheck
-        """
-        def pay(self):
-            paycheck = self.salary * self.unpaid_hours
-            self.unpaid_hours = 0
-            return paycheck
-
-    e1 = Employee(8.25)
-    e1.work(8)
-    e1.work(8)
-    e1.work(8)
-    e1.work(8)
-    e1.work(8)
-    hours1 = e1.get_unpaid_hours()
-    paycheck1 = e1.pay()
-    print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck1,hours1))
-    e1.work(10)
-    e1.work(8)
-    e1.work(8)
-    hours2 = e1.get_unpaid_hours()
-    paycheck2 = e1.pay()
-    print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck2,hours2))
-
-    e2 = Employee(15.10)
-    e2.work(8)
-    e2.work(10)
-    e2.work(10)
-    e2.work(6)
-    e2.work(6)
-    hours3 = e2.get_unpaid_hours()
-    paycheck3 = e2.pay()
-    print("Employee 2 earns ${:,.2f} for {} hours of work.".format(paycheck3,hours3))
+    #e2 = Employee(15.10)
+    #e2.work(8)
+    #e2.work(10)
+    #e2.work(10)
+    #e2.work(6)
+    #e2.work(6)
+    #hours3 = e2.get_unpaid_hours()
+    #paycheck3 = e2.pay()
+    #print("Employee 2 earns ${:,.2f} for {} hours of work.".format(paycheck3,hours3))
 
 #################################################################
 
