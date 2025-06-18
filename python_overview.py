@@ -21,7 +21,7 @@
    all formatting must match the specification exactly.
    
    author = Jacob Schrum, Last modified 6/11/2023
-   author = ADD YOUR NAME, ADD DATE
+   author = Eleanor Wagner, ADD DATE
    
    DO NOT IMPORT ANY MODULES! USE ONLY STANDARD PYTHON FEATURES
 """
@@ -67,10 +67,29 @@ def exercise1():
        Return:           
        Computed sum
     """
-    # TODO: Write according to the specification above.
-    return -1 # TODO: Change
+    # https://www.w3schools.com/python/python_for_loops.asp
+    sum = 200 + 13-(200%13)
+    for x in range(sum+13, 1288, 13): # 1287+1 because range is non-inclusive
+        sum += x
+    
+    print("The sum is: {}".format(sum))
+    return sum
 
 #################################################################
+
+def first_longer_shorter(first, second):
+    # https://www.w3schools.com/python/ref_exception_valueerror.asp XXX
+    # https://www.digitalocean.com/community/tutorials/python-valueerror-exception-handling-examples
+    if first is None or second is None or len(first) == 0 or len(second) == 0:
+        raise ValueError
+    
+    str = ""
+    if(len(first) >= len(second)):
+        str = first[0] + second[0]
+    else:           
+        str = second[0] + first[0]
+    
+    return str
 
 def exercise2():
     """Exercise 2: Strings
@@ -91,16 +110,22 @@ def exercise2():
        must work for any valid input, not just for these
        examples.
     """
-    # TODO: Uncomment to test your completed function.
-    #       Turn in your code with these lines uncommented. 
-    #print(first_longer_shorter("Hello","Bye"))
-    #print(first_longer_shorter("Bye","Hello"))
-    #print(first_longer_shorter("1","abc"))
-    #print(first_longer_shorter("abc","1"))
-    #print(first_longer_shorter("abc","123"))
-    #print(first_longer_shorter("123","abc"))                
+    print(first_longer_shorter("Hello","Bye"))
+    print(first_longer_shorter("Bye","Hello"))
+    print(first_longer_shorter("1","abc"))
+    print(first_longer_shorter("abc","1"))
+    print(first_longer_shorter("abc","123"))
+    print(first_longer_shorter("123","abc"))                
 
 #################################################################
+
+def move_to_end(list, index):
+    x = 0
+    temp = list[index]
+    for x in range(index, len(list)-1):
+        list[x] = list[x+1]
+    
+    list[len(list)-1] = temp;
 
 def exercise3():
     """Exercise 3: Lists
@@ -122,12 +147,19 @@ def exercise3():
        1, 2, 3, 4, 6, 7, 8, 9, 10, 5
 
     """
-    # TODO: Define the array one_to_ten here
-
+    one_to_ten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    
     # TODO: Uncomment this line to test your function.
     #       Turn in your code with this line uncommented.
-    #move_to_end(one_to_ten, 4)
-
+    move_to_end(one_to_ten, 4)
+    count = 0
+    result = ""
+    for x in one_to_ten:
+        result += str(x)
+        if(count < len(one_to_ten)-1):
+            result += ", "
+        count += 1
+    print(result)
     # TODO: Print the array contents here
 
 #################################################################
