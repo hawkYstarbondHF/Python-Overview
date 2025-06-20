@@ -147,20 +147,24 @@ def exercise3():
        1, 2, 3, 4, 6, 7, 8, 9, 10, 5
 
     """
+    # testing array
     one_to_ten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
-    # TODO: Uncomment this line to test your function.
-    #       Turn in your code with this line uncommented.
+    # method call
     move_to_end(one_to_ten, 4)
-    count = 0
+    
+    # 
     result = ""
+    count = 0
+
+    # 
     for x in one_to_ten:
         result += str(x)
         if(count < len(one_to_ten)-1):
             result += ", "
         count += 1
+    
     print(result)
-    # TODO: Print the array contents here
 
 #################################################################
 
@@ -192,12 +196,12 @@ def exercise4():
     """
     # TODO: Uncomment to test your completed functions.
     #       Turn in your code with these lines uncommented. 
-    #print(recursive_seq(5))
-    #print(dynamic_seq(5))
-    #print(recursive_seq(8))
-    #print(dynamic_seq(8))
-    #print(recursive_seq(15))
-    #print(dynamic_seq(15))
+    print(recursive_seq(5))
+    print(dynamic_seq(5))
+    print(recursive_seq(8))
+    print(dynamic_seq(8))
+    print(recursive_seq(15))
+    print(dynamic_seq(15))
 
 def recursive_seq(n):
     """Recursively compute the sequence described in the comment for
@@ -208,7 +212,12 @@ def recursive_seq(n):
        Return: 
        n-th value in the sequence
     """
-    return -1 # TODO: Change this
+    if n < 0:
+        raise ValueError()
+    if(n <= 2):
+        return n + 1
+    
+    return recursive_seq(n-3) + recursive_seq(n-1) # TODO: Change this
 
 def dynamic_seq(n):
     """Compute the sequence described in the comment for
@@ -220,7 +229,27 @@ def dynamic_seq(n):
        Return: 
        n-th value in the sequence
     """
-    return -1 # TODO: Change this
+    # parameter handling
+    if n < 0:
+        raise ValueError()
+    
+    # https://www.w3schools.com/python/python_lists_loop.asp#:~:text=Looping%20Using%20List%20Comprehension
+    # since you can't declare a list of a certain size in python, this fills it with -1
+    # auxiliary list
+    list = [-1 for x in range(n)]
+    
+    # base cases
+    if n <= 2:
+        return n+1
+    else:
+        # replace all items in list with proper values
+        for x in range(len(list)):
+            if x <= 2: # base cases
+                list[x] = x+1
+            else:
+                list[x] = list[x-3] + list[x-1]
+    
+    return list[n-3] + list[n-1] # n-th value
 
 
 #################################################################
@@ -250,8 +279,27 @@ def exercise5():
        The file "numbers.txt" does not exist. Exiting.
        
     """
-    # TODO: Write according to the specification above.
+    try:
+        # https://www.w3schools.com/python/python_file_handling.asp
+        f = open("numbers.txt")
+        
+        sum = float(f.readline())
+        max = int(sum)
+        count = 1
+        
+        for line in f:
+            # difficulties with casting to int, so all lines are floats
+            temp = float(line)
+            if temp > max:
+                max = int(temp)
+            sum += temp
+            count += 1
+        f.close()
 
+        print("Maximum value: {}".format(max))
+        print("Average value: {}".format(sum/count))
+    except FileNotFoundError:
+        print("The file \"numbers.txt\" does not exist. Exiting.")
 #################################################################
 
 def exercise6():
@@ -277,35 +325,55 @@ def exercise6():
     """
     class Employee:
         """TODO: Descriptive comment."""
+        def __init__(self, x):
+            self.rate = x
+            self.hours = 0
+        
+        """TODO: Descriptive comment."""
+        def work(self, x):
+            self.hours += x
+        
+        """TODO: Descriptive comment."""
+        def get_unpaid_hours(self):
+            return self.hours
+        
+        """TODO: Descriptive comment."""
+        def pay(self):
+            paycheck = float(self.rate * self.hours)
+            self.hours = 0
+            return paycheck
+
+
+        
         # TODO: Define the class as described above.
 
     # TODO: Uncomment to test your completed class.
     #       Turn in your code with these lines uncommented. 
-    #e1 = Employee(8.25)
-    #e1.work(8)
-    #e1.work(8)
-    #e1.work(8)
-    #e1.work(8)
-    #e1.work(8)
-    #hours1 = e1.get_unpaid_hours()
-    #paycheck1 = e1.pay()
-    #print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck1,hours1))
-    #e1.work(10)
-    #e1.work(8)
-    #e1.work(8)
-    #hours2 = e1.get_unpaid_hours()
-    #paycheck2 = e1.pay()
-    #print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck2,hours2))
+    e1 = Employee(8.25)
+    e1.work(8)
+    e1.work(8)
+    e1.work(8)
+    e1.work(8)
+    e1.work(8)
+    hours1 = e1.get_unpaid_hours()
+    paycheck1 = e1.pay()
+    print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck1,hours1))
+    e1.work(10)
+    e1.work(8)
+    e1.work(8)
+    hours2 = e1.get_unpaid_hours()
+    paycheck2 = e1.pay()
+    print("Employee 1 earns ${:,.2f} for {} hours of work.".format(paycheck2,hours2))
 
-    #e2 = Employee(15.10)
-    #e2.work(8)
-    #e2.work(10)
-    #e2.work(10)
-    #e2.work(6)
-    #e2.work(6)
-    #hours3 = e2.get_unpaid_hours()
-    #paycheck3 = e2.pay()
-    #print("Employee 2 earns ${:,.2f} for {} hours of work.".format(paycheck3,hours3))
+    e2 = Employee(15.10)
+    e2.work(8)
+    e2.work(10)
+    e2.work(10)
+    e2.work(6)
+    e2.work(6)
+    hours3 = e2.get_unpaid_hours()
+    paycheck3 = e2.pay()
+    print("Employee 2 earns ${:,.2f} for {} hours of work.".format(paycheck3,hours3))
 
 #################################################################
 
